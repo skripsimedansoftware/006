@@ -142,6 +142,60 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function project($option = 'view', $id = NULL)
+	{
+		if (!empty($id))
+		{
+			switch ($option) {
+				case 'edit':
+					if ($this->input->method() == 'post')
+					{
+
+					}
+					else
+					{
+						$this->template->load('page');
+					}
+				break;
+
+				case 'delete':
+				break;
+
+				default:
+					$this->template->load('page');
+				break;
+			}
+		}
+		else
+		{
+			if ($option == 'add')
+			{
+				if ($this->input->method() == 'post')
+				{
+					$this->form_validation->set_rules('name', 'Nama Project', 'trim|required|max_length[40]');
+					$this->form_validation->set_rules('category', 'Kategori Project', 'trim|required|integer');
+					$this->form_validation->set_rules('budget', 'Project Budget', 'trim|required|numeric');
+					if ($this->form_validation->run() == TRUE)
+					{
+
+					}
+					else
+					{
+
+					}
+				}
+				else
+				{
+
+				}
+			}
+			else
+			{
+
+			}
+		}
+	}
+
 	public function is_owned_data($val, $str)
 	{
 		$str = explode('.', $str);
