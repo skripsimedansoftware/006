@@ -50,7 +50,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue fixed">
+<body class="hold-transition sidebar-mini skin-blue fixed">
 <div class="wrapper">
 
 	<!-- Main Header -->
@@ -59,9 +59,9 @@ desired effect
 		<!-- Logo -->
 		<a href="<?php echo base_url($this->router->fetch_class()) ?>" class="logo">
 			<!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>A</b>LT</span>
+			<span class="logo-mini"><b>S</b>AW</span>
 			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Admin</b>LTE</span>
+			<span class="logo-lg"><b>Skripsi</b></span>
 		</a>
 
 		<!-- Header Navbar -->
@@ -228,32 +228,12 @@ desired effect
 				</div>
 			</div>
 
-			<!-- search form (Optional) -->
-			<form action="#" method="get" class="sidebar-form">
-				<div class="input-group">
-					<input type="text" name="q" class="form-control" placeholder="Search...">
-					<span class="input-group-btn">
-						<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-					</span>
-				</div>
-			</form>
-			<!-- /.search form -->
-
 			<!-- Sidebar Menu -->
 			<ul class="sidebar-menu" data-widget="tree">
-				<li class="header">HEADER</li>
+				<li class="header">KAMISPACE PROJECT</li>
 				<!-- Optionally, you can add icons to the links -->
-				<li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-				<li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-				<li class="treeview">
-					<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-						<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="#">Link in level 2</a></li>
-						<li><a href="#">Link in level 2</a></li>
-					</ul>
-				</li>
+				<li class="<?php echo ($this->router->fetch_method() == 'index')?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class()) ?>"><i class="fa fa-home"></i> <span>Home</span></a></li>
+				<li class="<?php echo (in_array($this->router->fetch_method(), ['project', 'new_project', 'edit_project']))?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class().'/project') ?>"><i class="fa fa-map"></i> <span>Project</span></a></li>
 			</ul>
 			<!-- /.sidebar-menu -->
 		</section>
@@ -269,11 +249,9 @@ desired effect
 	<!-- Main Footer -->
 	<footer class="main-footer">
 		<!-- To the right -->
-		<div class="pull-right hidden-xs">
-			Anything you want
-		</div>
+		<div class="pull-right hidden-xs">Skripsi</div>
 		<!-- Default to the left -->
-		<strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Medan Software</a>.</strong> All rights reserved.
+		<strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Kamispace.id</a>.</strong> All rights reserved.
 	</footer>
 
 	<!-- Control Sidebar -->
