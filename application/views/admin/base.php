@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>bower_components/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>bower_components/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>dist/css/AdminLTE.min.css">
-	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>dist/css/skins/skin-blue.min.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>dist/css/skins/_all-skins.min.css">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -50,7 +50,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue fixed">
+<body class="hold-transition skin-yellow fixed">
 <div class="wrapper">
 
 	<!-- Main Header -->
@@ -106,27 +106,6 @@ desired effect
 					</li>
 					<!-- /.messages-menu -->
 
-					<!-- Notifications Menu -->
-					<li class="dropdown notifications-menu">
-						<!-- Menu toggle button -->
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-bell-o"></i>
-							<span class="label label-warning">10</span>
-						</a>
-						<ul class="dropdown-menu">
-							<li class="header">You have 10 notifications</li>
-							<li>
-								<!-- Inner Menu: contains the notifications -->
-								<ul class="menu">
-									<li><!-- start notification -->
-										<a href="#"><i class="fa fa-users text-aqua"></i> 5 new members joined today</a>
-									</li>
-									<!-- end notification -->
-								</ul>
-							</li>
-							<li class="footer"><a href="#">View all</a></li>
-						</ul>
-					</li>
 					<!-- Tasks Menu -->
 					<li class="dropdown tasks-menu">
 						<!-- Menu Toggle Button -->
@@ -160,6 +139,29 @@ desired effect
 							</li>
 						</ul>
 					</li>
+
+					<!-- Notifications Menu -->
+					<li class="dropdown notifications-menu">
+						<!-- Menu toggle button -->
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-bell-o"></i>
+							<span class="label label-warning">10</span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="header">You have 10 notifications</li>
+							<li>
+								<!-- Inner Menu: contains the notifications -->
+								<ul class="menu">
+									<li><!-- start notification -->
+										<a href="#"><i class="fa fa-users text-aqua"></i> 5 new members joined today</a>
+									</li>
+									<!-- end notification -->
+								</ul>
+							</li>
+							<li class="footer"><a href="#">View all</a></li>
+						</ul>
+					</li>
+
 					<!-- User Account Menu -->
 					<li class="dropdown user user-menu">
 						<!-- Menu Toggle Button -->
@@ -173,10 +175,7 @@ desired effect
 							<!-- The user image in the menu -->
 							<li class="user-header">
 								<img src="<?php echo (!empty($user->photo))?base_url('uploads/'.$user->photo):base_url('assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image">
-								<p>
-									<?php echo $user->full_name ?> - Web Developer
-									<small>Member since Nov. 2012</small>
-								</p>
+								<p><?php echo $user->full_name ?> - ADMIN</p>
 							</li>
 							<!-- Menu Body -->
 							<li class="user-body">
@@ -243,8 +242,19 @@ desired effect
 			<ul class="sidebar-menu" data-widget="tree">
 				<li class="header">HEADER</li>
 				<!-- Optionally, you can add icons to the links -->
-				<li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+				<li class="<?php echo $this->router->fetch_method() == 'index'?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class()) ?>"><i class="fa fa-home"></i> <span>Home</span></a></li>
+				<li class="<?php echo $this->router->fetch_method() == 'chat'?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class().'/chat') ?>"><i class="fa fa-comments"></i> <span>Chat</span></a></li>
 				<li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+				<li class="treeview">
+					<a href="#"><i class="fa fa-link"></i> <span>Product</span>
+						<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_material') ?>"><i class="fa fa-circle-o"></i> Material</a></li>
+						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_size') ?>"><i class="fa fa-circle-o"></i> Size</a></li>
+						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_material') ?>"><i class="fa fa-circle-o"></i> Link in level 2</a></li>
+					</ul>
+				</li>
 				<li class="treeview">
 					<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
 						<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -273,7 +283,7 @@ desired effect
 			Anything you want
 		</div>
 		<!-- Default to the left -->
-		<strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Medan Software</a>.</strong> All rights reserved.
+		<strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Konglo Batik</a>.</strong> All rights reserved.
 	</footer>
 
 	<!-- Control Sidebar -->

@@ -142,6 +142,57 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function chat()
+	{
+		$this->template->load('chat');
+	}
+
+	public function product_material($id = NULL, $option = 'view')
+	{
+		if (!empty($id))
+		{
+
+		}
+		else
+		{
+
+		}
+	}
+
+	public function product_size($option = 'view', $id = NULL)
+	{
+		switch ($option)
+		{
+			case 'add':
+				if ($this->input->method() == 'post')
+				{
+
+				}
+				else
+				{
+					$this->template->load('product/size/add');
+				}
+			break;
+
+			case 'edit':
+			break;
+
+			case 'delete':
+			break;
+
+			default:
+				if (!empty($id))
+				{
+
+				}
+				else
+				{
+					$this->template->load('product/dashboard');
+				}
+			break;
+		}
+	}
+
 	public function is_owned_data($val, $str)
 	{
 		$str = explode('.', $str);
