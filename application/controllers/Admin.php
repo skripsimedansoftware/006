@@ -257,6 +257,53 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function criteria($option = 'view', $id = NULL)
+	{
+		if (!empty($id))
+		{
+			switch ($option) {
+				case 'edit':
+					if ($this->input->method() == 'post')
+					{
+
+					}
+					else
+					{
+						$this->template->load('page');
+					}
+				break;
+
+				case 'delete':
+				break;
+
+				default:
+					show_404();
+				break;
+			}
+		}
+		else
+		{
+			if ($option == 'view')
+			{
+				$this->template->load('criteria/home');
+			}
+			// add
+			else
+			{
+				// add
+				if ($this->input->method() == 'post')
+				{
+
+				}
+				// 
+				else
+				{
+					$this->template->load('criteria/add');
+				}
+			}
+		}
+	}
+
 	public function search_freelance($id)
 	{
 		$this->template->load('saw/search_freelance');

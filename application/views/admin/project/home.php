@@ -39,13 +39,17 @@
 							<td><?php echo $project->category ?></td>
 							<td><?php echo $project->area ?></td>
 							<td><?php echo $project->budget ?></td>
-							<td><?php echo $project->deadline ?></td>
-							<td><?php echo str_replace('-', ' ', $project->status)  ?></td>
+							<td>
+								<?php
+								$deadline = explode('-', $project->deadline);
+								echo $deadline[2].'-'.$deadline[1].'-'.$deadline[0];
+								?>
+							</td>
 							<td>
 								<?php switch ($project->status) {
 									case 'search-freelance':
 										?>
-										<a href="<?php echo base_url($this->router->fetch_class().'/search_freelance/'.$project->id) ?>" class="btn btn-primary btn-block btn-flat">Cari Freelance</a>
+										<a href="<?php echo base_url($this->router->fetch_class().'/search_freelance/'.$project->id) ?>" class="btn btn-block btn-flat btn-xs btn-primary">Cari Freelance</a>
 										<?php
 									break;
 
@@ -59,6 +63,10 @@
 									default:
 									break;
 								} ?>
+							</td>
+							<td>
+								<a href="<?php echo base_url($this->router->fetch_class().'/project/edit/'.$project->id) ?>" class="btn btn-flat btn-xs btn-default">Edit</a>
+								<a href="<?php echo base_url($this->router->fetch_class().'/project/cancel/'.$project->id) ?>" class="btn btn-flat btn-xs btn-danger">Batalkan</a>
 							</td>
 						</tr>
 						<?php endforeach; ?>
