@@ -87,7 +87,7 @@ CREATE TABLE `project` (
   `area` varchar(20) DEFAULT NULL,
   `budget` double NOT NULL,
   `deadline` date DEFAULT NULL,
-  `status` enum('in-progress','not-completed','finished') NOT NULL
+  `status` enum('search-freelance','in-progress','not-completed','finished') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
