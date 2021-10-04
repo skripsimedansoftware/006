@@ -321,22 +321,30 @@ desired effect
 	<!-- Add the sidebar's background. This div must be placed
 	immediately after the control sidebar -->
 	<div class="control-sidebar-bg"></div>
-	<div class="modal fade" id="modal-default">
+	<div class="modal fade" id="modal-category">
 	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">Default Modal</h4>
+		<form id="form-category">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Add Category</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="form-group">
+								<label>Name</label>
+								<input type="text" class="form-control" name="name" placeholder="Category Name">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save</button>
+				</div>
 			</div>
-			<div class="modal-body">
-				<p>One fine body&hellip;</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
-			</div>
-		</div>
-	<!-- /.modal-content -->
+		</form>
 	</div>
 	<!-- /.modal-dialog -->
 	</div>
@@ -368,7 +376,19 @@ function readURL(input) {
 	}
 }
 
-$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
+
+$('#form-category').on('submit', (function(e) {
+	e.preventDefault();
+	$.ajax({
+			url: '<?php echo base_url($this->router->fetch_class().'/project_category/add') ?>',
+			type: 'post',
+			data: {},
+			success: function (data) {
+				data
+			}
+		});
+}));
 </script>
 </body>
 </html>

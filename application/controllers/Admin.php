@@ -7,7 +7,7 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('template', ['module' => strtolower($this->router->fetch_class())]);
-		$this->load->model(['user', 'project']);
+		$this->load->model(['user', 'project', 'project_category']);
 		if (empty($this->session->userdata($this->router->fetch_class())))
 		{
 			if (!in_array($this->router->fetch_method(), ['login', 'register', 'forgot_password']))
@@ -173,7 +173,7 @@ class Admin extends CI_Controller {
 				if ($this->input->method() == 'post')
 				{
 					$this->form_validation->set_rules('name', 'Nama Project', 'trim|required|max_length[40]');
-					$this->form_validation->set_rules('category', 'Kategori Project', 'trim|required|integer');
+					$this->form_validation->set_rules('category', 'Kategori Project', 'trim|required|integer', array('integer' => 'Bidang {field} dibutuhkan.'));
 					$this->form_validation->set_rules('budget', 'Project Budget', 'trim|required|numeric');
 
 					if ($this->form_validation->run() == TRUE)
@@ -182,30 +182,35 @@ class Admin extends CI_Controller {
 
 						if (!empty($this->input->post('deadline')))
 						{
-							$deadline = explode('-', $this->input->post('deadline'));
+							$deadline = explode('/', $this->input->post('deadline'));
+							$deadline = $deadline[2].'-'.$deadline[1].'-'.$deadline[0];
 						}
 
-						// $this->project->create(array(
-						// 	'name' => $this->input->post('name'),
-						// 	'category' => $this->input->post('category'),
-						// 	'area' => $this->input->post('area'),
-						// 	'budget' => $this->input->post('budget'),
-						// 	'deadline' => $deadline
-						// ));
+						$this->project->create(array(
+							'name' => $this->input->post('name'),
+							'category' => $this->input->post('category'),
+							'area' => $this->input->post('area'),
+							'budget' => $this->input->post('budget'),
+							'deadline' => $deadline
+						));
+
+
+						$this->session->set_flashdata('project', array('status' => 'success', 'message' => 'Data project berhasil ditambahkan'));
+						redirect(base_url($this->router->fetch_class().'/project'), 'refresh');
 					}
 					else
 					{
-
+						$this->template->load('project/add');
 					}
 				}
 				else
 				{
-
+					$this->template->load('project/add');
 				}
 			}
 			else
 			{
-
+				$this->template->load('project/home');
 			}
 		}
 	}
