@@ -257,6 +257,11 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function search_freelance($id)
+	{
+		$this->template->load('saw/search_freelance');
+	}
+
 	public function is_owned_data($val, $str)
 	{
 		$str = explode('.', $str);

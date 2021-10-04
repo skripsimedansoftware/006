@@ -386,13 +386,12 @@ function load_project_category() {
 		success: function (data) {
 			$('#project-category-list').empty();
 			data.data.forEach((el, index) => {
-				console.log(el.id)
 				$('#project-category-list').append(
 				'<tr>'+
 					'<td>'+el.name+'</td>'+
 					'<td>'+
 						'<button class="btn btn-xs btn-default modal-category-edit" onclick="category_edit('+el.id+')"  data-id="'+el.id+'" data-toggle="modal" data-target="#modal-category" ><i class="fa fa-edit"></i></button>'+
-						'&nbsp;&nbsp;'+
+						"&nbsp;&nbsp;&nbsp;&nbsp;"+
 						'<button class="btn btn-xs btn-danger modal-category-delete" onclick="category_delete('+el.id+')"  data-id="'+el.id+'"><i class="fa fa-trash-o"></i></button>'+
 					'</td>'+
 				'</tr>'
@@ -416,6 +415,19 @@ function category_edit(id) {
 		type: 'get',
 		success: function (data) {
 			$('#category-name').val(data.data.name);
+		},
+		error: function(error) {
+			console.log(error)
+		}
+	});
+}
+
+function category_delete(id) {
+	$.ajax({
+		url: '<?php echo base_url($this->router->fetch_class().'/project_category/view/') ?>'+id,
+		type: 'get',
+		success: function (data) {
+			load_project_category();
 		},
 		error: function(error) {
 			console.log(error)

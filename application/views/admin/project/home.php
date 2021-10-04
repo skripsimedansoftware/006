@@ -29,17 +29,37 @@
 						<th>Budget</th>
 						<th>Deadline</th>
 						<th>Status</th>
+						<th>Option</th>
 					</thead>
 					<tbody>
-						<?php foreach ($this->project->view()->result() as $project): ?>
+						<?php foreach ($this->project->view()->result() as $key => $project): ?>
 						<tr>
-							<td>XXXXXXX</td>
-							<td>XXXXXXX</td>
-							<td>XXXXXXX</td>
-							<td>XXXXXXX</td>
-							<td>XXXXXXX</td>
-							<td>XXXXXXX</td>
-							<td>XXXXXXX</td>
+							<td><?php echo $key+1 ?></td>
+							<td><?php echo $project->name ?></td>
+							<td><?php echo $project->category ?></td>
+							<td><?php echo $project->area ?></td>
+							<td><?php echo $project->budget ?></td>
+							<td><?php echo $project->deadline ?></td>
+							<td><?php echo str_replace('-', ' ', $project->status)  ?></td>
+							<td>
+								<?php switch ($project->status) {
+									case 'search-freelance':
+										?>
+										<a href="<?php echo base_url($this->router->fetch_class().'/search_freelance/'.$project->id) ?>" class="btn btn-primary btn-block btn-flat">Cari Freelance</a>
+										<?php
+									break;
+
+									case 'in-progress':
+									break;
+
+									case 'not-completed':
+									break;
+									
+									// finished
+									default:
+									break;
+								} ?>
+							</td>
 						</tr>
 						<?php endforeach; ?>
 					</tbody>
