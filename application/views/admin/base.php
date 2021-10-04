@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>bower_components/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>dist/css/AdminLTE.min.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/') ?>dist/css/skins/_all-skins.min.css">
+	<!-- Sweetalert -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -28,6 +30,8 @@
 		height: 45px;
 		/*height: auto;*/
 	}
+
+	.swal2-popup { font-size: 1.6rem !important; }
 	</style>
 </head>
 <!--
@@ -357,6 +361,7 @@ desired effect
 
 <!-- jQuery 3 -->
 <script src="<?php echo base_url('assets/adminlte/') ?>bower_components/jquery/dist/jquery.min.js"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url('assets/adminlte/') ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -424,14 +429,27 @@ function category_edit(id) {
 }
 
 function category_delete(id) {
-	$.ajax({
-		url: '<?php echo base_url($this->router->fetch_class().'/project_category/view/') ?>'+id,
-		type: 'get',
-		success: function (data) {
-			load_project_category();
-		},
-		error: function(error) {
-			console.log(error)
+	Swal.fire({
+		title: 'Do you want to save the changes?',
+		showDenyButton: false,
+		showCancelButton: true,
+		confirmButtonText: 'Yes, delete it!',
+		denyButtonText: `Don't save`,
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				url: '<?php echo base_url($this->router->fetch_class().'/project_category/delete/') ?>'+id,
+				type: 'get',
+				success: function (data) {
+					Swal.fire('Project category deleted!', '', 'success');
+					load_project_category();
+				},
+				error: function(error) {
+					console.log(error)
+				}
+			});
+		} else if (result.isDenied) {
+			Swal.fire('Changes are not saved', '', 'info')
 		}
 	});
 }
