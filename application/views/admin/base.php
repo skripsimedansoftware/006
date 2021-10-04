@@ -234,6 +234,16 @@ desired effect
 				<!-- Optionally, you can add icons to the links -->
 				<li class="<?php echo ($this->router->fetch_method() == 'index')?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class()) ?>"><i class="fa fa-home"></i> <span>Home</span></a></li>
 				<li class="<?php echo (in_array($this->router->fetch_method(), ['project', 'new_project', 'edit_project']))?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class().'/project') ?>"><i class="fa fa-map"></i> <span>Project</span></a></li>
+				<li class="treeview">
+					<a href="#"><i class="fa fa-link"></i> <span>Data Refrence</span>
+						<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_material') ?>"><i class="fa fa-circle-o"></i> Material</a></li>
+						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_size') ?>"><i class="fa fa-circle-o"></i> Size</a></li>
+						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_material') ?>"><i class="fa fa-circle-o"></i> Link in level 2</a></li>
+					</ul>
+				</li>
 			</ul>
 			<!-- /.sidebar-menu -->
 		</section>

@@ -162,7 +162,7 @@ class Admin extends CI_Controller {
 				break;
 
 				default:
-					$this->template->load('page');
+					show_404();
 				break;
 			}
 		}
@@ -191,7 +191,14 @@ class Admin extends CI_Controller {
 			}
 			else
 			{
+				if (!empty($id))
+				{
 
+				}
+				else
+				{
+					$this->template->load('project/home');
+				}
 			}
 		}
 	}
