@@ -63,20 +63,24 @@
 				<table class="table table-hover table-striped table-condensed table-bordered">
 					<thead>
 						<th>Name</th>
-						<th><i class="fa fa-trash"></i></th>
+						<th>Option</th>
 					</thead>
 					<tbody>
 						<?php foreach ($this->project_category->view()->result() as $category): ?>
 						<tr>
 							<td><?php echo $category->name ?></td>
-							<td>XXX</td>
+							<td>
+								<button class="btn btn-xs btn-default modal-category-edit" data-id="<?php echo $category->id ?>" data-toggle="modal" data-target="#modal-category" ><i class="fa fa-edit"></i></button>
+								&nbsp;&nbsp;
+								<button class="btn btn-xs btn-danger modal-category-delete" data-id="<?php echo $category->id ?>"><i class="fa fa-trash-o"></i></button>
+							</td>
 						</tr>
 						<?php endforeach; ?>
 					</tbody>
 				</table>
 			</div>
 			<div class="box-footer">
-				<button class="btn btn-primary btn-flat btn-block" data-toggle="modal" data-target="#modal-category"><i class="fa fa-plus"></i> Add Category</button>
+				<button class="btn btn-primary btn-flat btn-block" data-toggle="modal" data-target="#modal-category" id="modal-category-add"><i class="fa fa-plus"></i> Add Category</button>
 			</div>
 		</div>
 	</div>

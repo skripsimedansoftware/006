@@ -324,10 +324,11 @@ desired effect
 	<div class="modal fade" id="modal-category">
 	<div class="modal-dialog">
 		<form id="form-category">
+			<input type="hidden" id="category-method">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title">Add Category</h4>
+					<h4 class="modal-title" id="modal-title-category">Add Category</h4>
 				</div>
 				<div class="modal-body">
 					<div class="row">
@@ -378,16 +379,31 @@ function readURL(input) {
 
 $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
 
+$('#modal-category-add').on('click', function () {
+	$('#modal-title-category').text('Add Category')
+	$('#category-method').val('add').attr('data-id', null);
+});
+
+$('.modal-category-edit').on('click', function () {
+	$('#modal-title-category').text('Edit Category')
+	$('#category-method').val('edit').attr('data-id', $(this).attr('data-id'));
+});
+
 $('#form-category').on('submit', (function(e) {
 	e.preventDefault();
+	console.log($('#category-method').val());
+	console.log($('#category-method').attr('data-id'));
 	$.ajax({
-			url: '<?php echo base_url($this->router->fetch_class().'/project_category/add') ?>',
-			type: 'post',
-			data: {},
-			success: function (data) {
-				data
-			}
-		});
+		url: '<?php echo base_url($this->router->fetch_class().'/project_category/add') ?>',
+		type: 'post',
+		data: {},
+		success: function (data) {
+			console.log(data)
+		},
+		error: function(error) {
+			console.log(error)
+		}
+	});
 }));
 </script>
 </body>
