@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 04 Okt 2021 pada 12.13
--- Versi server: 10.4.20-MariaDB
--- Versi PHP: 7.3.29
+-- Host: localhost:3306
+-- Generation Time: Oct 04, 2021 at 11:27 AM
+-- Server version: 5.7.33
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,30 +24,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `alternative_criteria`
+-- Table structure for table `alternative_data`
 --
 
-CREATE TABLE `alternative_criteria` (
+CREATE TABLE `alternative_data` (
   `id` int(4) NOT NULL,
   `criteria_id` int(4) NOT NULL,
+  `user_id` int(2) NOT NULL,
   `weight` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `alternative_data`
---
-
-CREATE TABLE `alternative_data` (
-  `id` int(4) NOT NULL,
-  `name` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `criteria`
+-- Table structure for table `criteria`
 --
 
 CREATE TABLE `criteria` (
@@ -60,7 +50,7 @@ CREATE TABLE `criteria` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `email_confirm`
+-- Table structure for table `email_confirm`
 --
 
 CREATE TABLE `email_confirm` (
@@ -75,7 +65,19 @@ CREATE TABLE `email_confirm` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `project`
+-- Table structure for table `freelancer_project`
+--
+
+CREATE TABLE `freelancer_project` (
+  `id` int(4) NOT NULL,
+  `user_id` int(2) NOT NULL,
+  `project_id` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project`
 --
 
 CREATE TABLE `project` (
@@ -91,7 +93,7 @@ CREATE TABLE `project` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `project_category`
+-- Table structure for table `project_category`
 --
 
 CREATE TABLE `project_category` (
@@ -102,7 +104,7 @@ CREATE TABLE `project_category` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -116,100 +118,88 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `role`, `email`, `username`, `password`, `full_name`, `photo`) VALUES
-(1, 'admin', 'agungmasda29@gmail.com', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', 'user-profile-1.png');
+(1, 'admin', 'agungmasda29@gmail.com', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', 'user-profile-1.jpg');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `alternative_criteria`
---
-ALTER TABLE `alternative_criteria`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `alternative_data`
+-- Indexes for table `alternative_data`
 --
 ALTER TABLE `alternative_data`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `criteria`
+-- Indexes for table `criteria`
 --
 ALTER TABLE `criteria`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `email_confirm`
+-- Indexes for table `email_confirm`
 --
 ALTER TABLE `email_confirm`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `project`
+-- Indexes for table `project`
 --
 ALTER TABLE `project`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `project_category`
+-- Indexes for table `project_category`
 --
 ALTER TABLE `project_category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `alternative_criteria`
---
-ALTER TABLE `alternative_criteria`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `alternative_data`
+-- AUTO_INCREMENT for table `alternative_data`
 --
 ALTER TABLE `alternative_data`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `criteria`
+-- AUTO_INCREMENT for table `criteria`
 --
 ALTER TABLE `criteria`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `email_confirm`
+-- AUTO_INCREMENT for table `email_confirm`
 --
 ALTER TABLE `email_confirm`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `project`
+-- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `project_category`
+-- AUTO_INCREMENT for table `project_category`
 --
 ALTER TABLE `project_category`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
