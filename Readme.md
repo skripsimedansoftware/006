@@ -2,7 +2,6 @@
 
 > PERANCANGAN SISTEM PENDUKUNG KEPUTUSAN PEMBAGIAN PROJEK DENGAN MENGGUNAKAN METODE SIMPLE ADDITIVE WEIGHTING (SAW) BERBASIS WEBSITE PADA PERUSAHAAN KAMISPACE
 
-
 **Kriteria :** 
 
 - Jumlah banyaknya proyek yg sedang di kerjakan (makin dikit makin besar kemungkinan dia dipilih)
