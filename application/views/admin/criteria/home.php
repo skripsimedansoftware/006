@@ -20,12 +20,15 @@
 							<th>Option</th>
 						</thead>
 						<tbody>
-							<?php foreach ($this->criteria->view()->result() as $criteria): ?>
+							<?php foreach ($this->criteria->view()->result() as $key => $criteria): ?>
 							<tr>
-								<td>xxxx</td>
-								<td>xxxx</td>
-								<td>xxxx</td>
-								<td>xxxx</td>
+								<td><?php echo $key+1 ?></td>
+								<td><?php echo $criteria->name; ?></td>
+								<td><?php echo $criteria->weight; ?></td>
+								<td>
+									<a class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
+									<button class="btn btn-xs btn-danger" onclick="delete_criteria(<?php echo $criteria->id; ?>)"><i class="fa fa-trash-o"></i></button>
+								</td>
 							</tr>
 							<?php endforeach; ?>
 						</tbody>

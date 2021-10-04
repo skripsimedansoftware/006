@@ -430,7 +430,7 @@ function category_edit(id) {
 
 function category_delete(id) {
 	Swal.fire({
-		title: 'Do you want to save the changes?',
+		title: 'Do you want to delete?',
 		showDenyButton: false,
 		showCancelButton: true,
 		confirmButtonText: 'Yes, delete it!',
@@ -448,6 +448,21 @@ function category_delete(id) {
 					console.log(error)
 				}
 			});
+		} else if (result.isDenied) {
+			Swal.fire('Changes are not saved', '', 'info')
+		}
+	});
+}
+
+function delete_criteria(id) {
+	Swal.fire({
+		title: 'Do you want to delete?',
+		showDenyButton: false,
+		showCancelButton: true,
+		confirmButtonText: 'Yes, delete it!',
+		denyButtonText: `Don't save`,
+	}).then((result) => {
+		if (result.isConfirmed) {
 		} else if (result.isDenied) {
 			Swal.fire('Changes are not saved', '', 'info')
 		}
