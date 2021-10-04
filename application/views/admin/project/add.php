@@ -23,14 +23,14 @@
 							<select name="category" class="form-control">
 								<option value="-">- CHOOSE CATEGORY -</option>
 								<?php foreach ($this->project_category->view()->result() as $category) : ?>
-								<option <?php set_value('category') == $category->id?'selected':'' ?> value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+								<option <?php echo set_value('category') == $category->id?'selected':'' ?> value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
 								<?php endforeach; ?>
 							</select>
 							<?php echo form_error('category', '<span class="help-block error">', '</span>'); ?>
 						</div>
 						<div class="form-group">
 							<label>Area</label>
-							<input type="text" class="form-control" name="area" placeholder="Project Area">
+							<input type="text" class="form-control" name="area" placeholder="Project Area" value="<?php echo set_value('area') ?>">
 							<?php echo form_error('area', '<span class="help-block error">', '</span>'); ?>
 						</div>
 						<div class="form-group">

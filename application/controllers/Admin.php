@@ -210,7 +210,49 @@ class Admin extends CI_Controller {
 			}
 			else
 			{
-				$this->template->load('project/home');
+				if (!empty($id))
+				{
+					$this->output->set_content_type('application/json')->set_output(json_encode(array('status' => 'success', 'data' => $this->project_category->view(array('id' => $this->input->post('id')))->row())));
+				}
+				else
+				{
+					$this->template->load('project/home');
+				}
+			}
+		}
+	}
+
+	public function project_category($option = 'view', $id = NULL)
+	{
+		if (!empty($id))
+		{
+			if ($this->input->method() == 'post')
+			{
+				$this->project_category->update(array('name' => $this->input->post('name')), array('id' => $id));
+				$this->output->set_content_type('application/json')->set_output(json_encode(array('status' => 'success', 'data' => $this->project_category->view(array('id' => $id))->row())));
+			}
+			else
+			{
+				if ($option == 'view')
+				{
+					$this->output->set_content_type('application/json')->set_output(json_encode(array('status' => 'success', 'data' => $this->project_category->view(array('id' => $id))->row())));
+				}
+				else
+				{
+					$this->output->set_content_type('application/json')->set_output(json_encode(array('status' => 'success', 'data' => $this->project_category->view(array('id' => $id))->row())));
+				}
+			}
+		}
+		else
+		{
+			if ($this->input->method() == 'post')
+			{
+				$this->project_category->create(array('name' => $this->input->post('name')));
+				$this->output->set_content_type('application/json')->set_output(json_encode(array('status' => 'success', 'data' => $this->project_category->view()->result())));
+			}
+			else
+			{
+				$this->output->set_content_type('application/json')->set_output(json_encode(array('status' => 'success', 'data' => $this->project_category->view()->result())));
 			}
 		}
 	}

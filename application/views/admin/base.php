@@ -335,7 +335,7 @@ desired effect
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label>Name</label>
-								<input type="text" class="form-control" name="name" placeholder="Category Name">
+								<input type="text" class="form-control" name="name" placeholder="Category Name" id="category-name">
 							</div>
 						</div>
 					</div>
@@ -379,31 +379,87 @@ function readURL(input) {
 
 $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
 
-$('#modal-category-add').on('click', function () {
-	$('#modal-title-category').text('Add Category')
-	$('#category-method').val('add').attr('data-id', null);
-});
-
-$('.modal-category-edit').on('click', function () {
-	$('#modal-title-category').text('Edit Category')
-	$('#category-method').val('edit').attr('data-id', $(this).attr('data-id'));
-});
-
-$('#form-category').on('submit', (function(e) {
-	e.preventDefault();
-	console.log($('#category-method').val());
-	console.log($('#category-method').attr('data-id'));
+function load_project_category() {
 	$.ajax({
-		url: '<?php echo base_url($this->router->fetch_class().'/project_category/add') ?>',
-		type: 'post',
-		data: {},
+		url: '<?php echo base_url($this->router->fetch_class().'/project_category/') ?>',
+		type: 'get',
 		success: function (data) {
-			console.log(data)
+			$('#project-category-list').empty();
+			data.data.forEach((el, index) => {
+				console.log(el.id)
+				$('#project-category-list').append(
+				'<tr>'+
+					'<td>'+el.name+'</td>'+
+					'<td>'+
+						'<button class="btn btn-xs btn-default modal-category-edit" onclick="category_edit('+el.id+')"  data-id="'+el.id+'" data-toggle="modal" data-target="#modal-category" ><i class="fa fa-edit"></i></button>'+
+						'&nbsp;&nbsp;'+
+						'<button class="btn btn-xs btn-danger modal-category-delete" onclick="category_delete('+el.id+')"  data-id="'+el.id+'"><i class="fa fa-trash-o"></i></button>'+
+					'</td>'+
+				'</tr>'
+				);
+			});
+		}
+	});
+}
+
+$('#modal-category-add').on('click', function () {
+	$('#modal-title-category').text('Add Category');
+	$('#category-method').val('add').attr('data-id', null);
+	$('#category-name').val('');
+});
+
+function category_edit(id) {
+	$('#modal-title-category').text('Edit Category');
+	$('#category-method').val('edit').attr('data-id', id);
+	$.ajax({
+		url: '<?php echo base_url($this->router->fetch_class().'/project_category/view/') ?>'+id,
+		type: 'get',
+		success: function (data) {
+			$('#category-name').val(data.data.name);
 		},
 		error: function(error) {
 			console.log(error)
 		}
 	});
+}
+
+$('#form-category').on('submit', (function(e) {
+	e.preventDefault();
+	var id = $('#category-method').attr('data-id');
+	if ($('#category-method').val() == 'add')
+	{
+		$.ajax({
+			url: '<?php echo base_url($this->router->fetch_class().'/project_category') ?>',
+			type: 'post',
+			data: {
+				name: $('#category-name').val()
+			},
+			success: function (data) {
+				load_project_category();
+			},
+			error: function(error) {
+				console.log(error)
+			}
+		});
+	}
+	else
+	{
+		$.ajax({
+			url: '<?php echo base_url($this->router->fetch_class().'/project_category/edit/') ?>'+id,
+			type: 'post',
+			data: {
+				name: $('#category-name').val()
+			},
+			success: function (data) {
+				load_project_category();
+			},
+			error: function(error) {
+				console.log(error)
+			}
+		});
+	}
+
+	$('#modal-category').modal('hide');
 }));
 </script>
 </body>

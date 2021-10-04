@@ -65,14 +65,14 @@
 						<th>Name</th>
 						<th>Option</th>
 					</thead>
-					<tbody>
+					<tbody id="project-category-list">
 						<?php foreach ($this->project_category->view()->result() as $category): ?>
 						<tr>
 							<td><?php echo $category->name ?></td>
 							<td>
-								<button class="btn btn-xs btn-default modal-category-edit" data-id="<?php echo $category->id ?>" data-toggle="modal" data-target="#modal-category" ><i class="fa fa-edit"></i></button>
+								<button class="btn btn-xs btn-default modal-category-edit" onclick="category_edit(<?php echo $category->id ?>)" data-id="<?php echo $category->id ?>" data-toggle="modal" data-target="#modal-category" ><i class="fa fa-edit"></i></button>
 								&nbsp;&nbsp;
-								<button class="btn btn-xs btn-danger modal-category-delete" data-id="<?php echo $category->id ?>"><i class="fa fa-trash-o"></i></button>
+								<button class="btn btn-xs btn-danger modal-category-delete" onclick="category_delete(<?php echo $category->id ?>)" data-id="<?php echo $category->id ?>"><i class="fa fa-trash-o"></i></button>
 							</td>
 						</tr>
 						<?php endforeach; ?>
