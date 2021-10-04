@@ -4,10 +4,6 @@ require_once('vendor/autoload.php');
 
 $saw = new Algorithm\SAW;
 
-// echo "<pre>";
-// print_r ($saw);
-// echo "</pre>";
-
 $saw->addCriteria('benefit', 1.9, 'Penguasaan Aspek teknis');
 $saw->addCriteria('benefit', 2.1, 'Pengalaman Kerja');
 $saw->addCriteria('benefit', 3, 'Interpersonal Skill');
@@ -109,13 +105,63 @@ for ($i = 0; $i < count($sum_prefrence); $i++)
 	$sum_prefrence[$i] = array_sum($sum_prefrence[$i]);
 }
 
-echo "<pre>";
-print_r ($sum_prefrence);
-echo "</pre>";
+?>
 
-echo "<pre>";
-print_r ($saw);
-echo "</pre>";
+<!-- CREATE VIEW -->
+
+<h3>Kecocokan Alternatif dan Kriteria</h3>
+<table border="1">
+	<thead>
+		<th>Alternatif</th>
+		<?php foreach ($saw->getCriteria()->get() as $criteria_key => $criteria) : ?>
+		<th>C<?php echo ($criteria_key+1) ?></th>
+		<?php endforeach; ?>
+	</thead>
+	<tbody>
+		<?php foreach ($saw->getAlternative()->get() as $alternative) : ?>
+		<tr>
+			<td><?php echo $alternative['data']['nama'] ?></td>
+			<?php foreach ($saw->getCriteria()->get() as $criteria_key => $criteria) : ?>
+			<td><?php echo $alternative['criteria'][$criteria_key] ?></td>
+			<?php endforeach; ?>
+		</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+
+<h3>Bobot Kriteria</h3>
+<table border="1">
+	<thead>
+		<th>Kriteria</th>
+		<th>Deskripsi</th>
+		<th>Bobot</th>
+		<th>Atribut</th>
+	</thead>
+	<tbody>
+		<?php foreach ($saw->getCriteria()->get() as $criteria_key => $criteria) : ?>
+		<tr>
+			<td>C<?php echo ($criteria_key+1) ?></td>
+			<td><?php echo $criteria['name'] ?></td>
+			<td><?php echo $criteria['weight'] ?></td>
+			<td><?php echo $criteria['attribute'] ?></td>
+		</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+
+<h3>Perhitungan Nilai Preferensi (P)</h3>
+<?php
+foreach ($sum_prefrence as $key => $value)
+{
+	echo 'A <small>'.($key+1).'</small> = '.$value.'<br>';
+}
+// echo "<pre>";
+// print_r ($sum_prefrence);
+// echo "</pre>";
+
+// echo "<pre>";
+// print_r ($saw);
+// echo "</pre>";
 
 // echo "<pre>";
 // print_r ($matrix_x);
