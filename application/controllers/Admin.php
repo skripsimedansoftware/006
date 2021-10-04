@@ -150,11 +150,37 @@ class Admin extends CI_Controller {
 				case 'edit':
 					if ($this->input->method() == 'post')
 					{
+						$deadline = NULL;
+						if (!empty($this->input->post('deadline')))
+						{
+							$deadline = explode('/', $this->input->post('deadline'));
+							foreach ($deadline as $dl) {
+								if (!in_array($dl, ['dd', 'mm', 'yyyy']))
+								{
+									$deadline = $deadline[2].'-'.$deadline[1].'-'.$deadline[0];
+								}
+								else
+								{
+									$deadline = NULL;
+								}
+							}
+						}
 
+						$this->project->update(array(
+							'name' => $this->input->post('name'),
+							'category' => $this->input->post('category'),
+							'area' => $this->input->post('area'),
+							'budget' => $this->input->post('budget'),
+							'deadline' => $deadline
+						), array('id' => $id));
+
+						$this->session->set_flashdata('project', array('status' => 'success', 'message' => 'Data project berhasil diperbaharui'));
+						redirect(base_url($this->router->fetch_class().'/project'), 'refresh');
 					}
 					else
 					{
-						$this->template->load('page');
+						$data['edit'] = $this->project->view(array('id' => $id))->row();
+						$this->template->load('project/edit', $data);
 					}
 				break;
 
@@ -183,7 +209,16 @@ class Admin extends CI_Controller {
 						if (!empty($this->input->post('deadline')))
 						{
 							$deadline = explode('/', $this->input->post('deadline'));
-							$deadline = $deadline[2].'-'.$deadline[1].'-'.$deadline[0];
+							foreach ($deadline as $dl) {
+								if (!in_array($dl, ['dd', 'mm', 'yyyy']))
+								{
+									$deadline = $deadline[2].'-'.$deadline[1].'-'.$deadline[0];
+								}
+								else
+								{
+									$deadline = NULL;
+								}
+							}
 						}
 
 						$this->project->create(array(

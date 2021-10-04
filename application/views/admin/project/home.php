@@ -41,8 +41,15 @@
 							<td><?php echo $project->budget ?></td>
 							<td>
 								<?php
-								$deadline = explode('-', $project->deadline);
-								echo $deadline[2].'-'.$deadline[1].'-'.$deadline[0];
+								if (!empty($project->deadline))
+								{
+									$deadline = explode('-', $project->deadline);
+									echo $deadline[2].'-'.$deadline[1].'-'.$deadline[0];
+								}
+								else
+								{
+									echo '-';
+								}
 								?>
 							</td>
 							<td>
