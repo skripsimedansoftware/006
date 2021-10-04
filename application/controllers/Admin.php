@@ -142,6 +142,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
+
 	public function project($option = 'view', $id = NULL)
 	{
 		if (!empty($id))
@@ -191,6 +192,50 @@ class Admin extends CI_Controller {
 			}
 			else
 			{
+
+			}
+		}
+	}
+
+	public function chat()
+	{
+		$this->template->load('chat');
+	}
+
+	public function product_material($id = NULL, $option = 'view')
+	{
+		if (!empty($id))
+		{
+
+		}
+		else
+		{
+
+		}
+	}
+
+	public function product_size($option = 'view', $id = NULL)
+	{
+		switch ($option)
+		{
+			case 'add':
+				if ($this->input->method() == 'post')
+				{
+
+				}
+				else
+				{
+					$this->template->load('product/size/add');
+				}
+			break;
+
+			case 'edit':
+			break;
+
+			case 'delete':
+			break;
+
+			default:
 				if (!empty($id))
 				{
 
@@ -199,7 +244,7 @@ class Admin extends CI_Controller {
 				{
 					$this->template->load('project/home');
 				}
-			}
+			break;
 		}
 	}
 
