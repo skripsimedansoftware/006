@@ -50,11 +50,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<<<<<<< HEAD
 <body class="hold-transition sidebar-mini skin-blue fixed">
-=======
-<body class="hold-transition skin-yellow fixed">
->>>>>>> 45472d17ba434b0556288a07fe1cc1764314df7d
 <div class="wrapper">
 
 	<!-- Main Header -->
@@ -254,11 +250,7 @@ desired effect
 		<!-- To the right -->
 		<div class="pull-right hidden-xs">Skripsi</div>
 		<!-- Default to the left -->
-<<<<<<< HEAD
 		<strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Kamispace.id</a>.</strong> All rights reserved.
-=======
-		<strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Konglo Batik</a>.</strong> All rights reserved.
->>>>>>> 45472d17ba434b0556288a07fe1cc1764314df7d
 	</footer>
 
 	<!-- Control Sidebar -->
@@ -329,6 +321,25 @@ desired effect
 	<!-- Add the sidebar's background. This div must be placed
 	immediately after the control sidebar -->
 	<div class="control-sidebar-bg"></div>
+	<div class="modal fade" id="modal-default">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Default Modal</h4>
+			</div>
+			<div class="modal-body">
+				<p>One fine body&hellip;</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+	</div>
 </div>
 <!-- ./wrapper -->
 
@@ -338,6 +349,12 @@ desired effect
 <script src="<?php echo base_url('assets/adminlte/') ?>bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url('assets/adminlte/') ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- InputMask -->
+<script src="<?php echo base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.js"></script>
+<script src="<?php echo base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="<?php echo base_url('assets/adminlte/') ?>plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
 <!-- AdminLTE App -->
 <script src="<?php echo base_url('assets/adminlte/') ?>dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
@@ -350,6 +367,8 @@ function readURL(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+
+$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
 </script>
 </body>
 </html>
