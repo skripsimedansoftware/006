@@ -10,7 +10,7 @@
 			<div class="small-box bg-aqua">
 				<div class="inner">
 					<h3>2</h3>
-					<p>Size</p>
+					<p>Studio</p>
 				</div>
 				<div class="icon">
 					<i class="fa fa-cut"></i>
@@ -22,7 +22,7 @@
 			<div class="small-box bg-aqua">
 				<div class="inner">
 					<h3>2</h3>
-					<p>Material</p>
+					<p>Project</p>
 				</div>
 				<div class="icon">
 					<i class="fa fa-cut"></i>
@@ -34,7 +34,7 @@
 			<div class="small-box bg-aqua">
 				<div class="inner">
 					<h3>2</h3>
-					<p>Customer</p>
+					<p>Freelancer</p>
 				</div>
 				<div class="icon">
 					<i class="fa fa-users"></i>
@@ -46,7 +46,7 @@
 			<div class="small-box bg-aqua">
 				<div class="inner">
 					<h3>2</h3>
-					<p>Order</p>
+					<p>Criteria</p>
 				</div>
 				<div class="icon">
 					<i class="fa fa-shopping-cart"></i>

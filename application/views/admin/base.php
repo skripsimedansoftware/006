@@ -235,36 +235,8 @@ desired effect
 			<ul class="sidebar-menu" data-widget="tree">
 				<li class="header">KAMISPACE PROJECT</li>
 				<!-- Optionally, you can add icons to the links -->
-<<<<<<< HEAD
 				<li class="<?php echo ($this->router->fetch_method() == 'index')?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class()) ?>"><i class="fa fa-home"></i> <span>Home</span></a></li>
 				<li class="<?php echo (in_array($this->router->fetch_method(), ['project', 'new_project', 'edit_project']))?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class().'/project') ?>"><i class="fa fa-map"></i> <span>Project</span></a></li>
-				<li class="treeview">
-					<a href="#"><i class="fa fa-link"></i> <span>Data Refrence</span>
-=======
-				<li class="<?php echo $this->router->fetch_method() == 'index'?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class()) ?>"><i class="fa fa-home"></i> <span>Home</span></a></li>
-				<li class="<?php echo $this->router->fetch_method() == 'chat'?'active':'' ?>"><a href="<?php echo base_url($this->router->fetch_class().'/chat') ?>"><i class="fa fa-comments"></i> <span>Chat</span></a></li>
-				<li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-				<li class="treeview">
-					<a href="#"><i class="fa fa-link"></i> <span>Product</span>
-						<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_material') ?>"><i class="fa fa-circle-o"></i> Material</a></li>
-						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_size') ?>"><i class="fa fa-circle-o"></i> Size</a></li>
-						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_material') ?>"><i class="fa fa-circle-o"></i> Link in level 2</a></li>
-					</ul>
-				</li>
-				<li class="treeview">
-					<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
->>>>>>> 45472d17ba434b0556288a07fe1cc1764314df7d
-						<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_material') ?>"><i class="fa fa-circle-o"></i> Material</a></li>
-						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_size') ?>"><i class="fa fa-circle-o"></i> Size</a></li>
-						<li><a href="<?php echo base_url($this->router->fetch_class().'/product_material') ?>"><i class="fa fa-circle-o"></i> Link in level 2</a></li>
-					</ul>
-				</li>
 			</ul>
 			<!-- /.sidebar-menu -->
 		</section>

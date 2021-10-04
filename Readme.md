@@ -9,4 +9,20 @@ Kriteria :
 - Kesanggupan dalam menerima berapa byk projek
 - Nilai kepuasan dari pihak studio arsitek (makin bagus makin besar kemungkinan dia dipilih)
 
+## Roles
+
+**ADMIN**
+- CRUD CRITERIA
+- VIEW PROJECT
+
+
+**STUDIO**
+- CRUD PROJECT - {FINISH PROJECT, RATING PROJECT}
+- PREVIEW OWN PROJECT
+
+
+**FREELANCER**
+- RECEIVE PROJECT NOTIFICATION
+- PREVIEW OWN WORKING PROJECT
+
 ![Flowchart](flowchart.jpeg)

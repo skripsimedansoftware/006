@@ -7,7 +7,7 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('template', ['module' => strtolower($this->router->fetch_class())]);
-		$this->load->model('user');
+		$this->load->model(['user', 'project']);
 		if (empty($this->session->userdata($this->router->fetch_class())))
 		{
 			if (!in_array($this->router->fetch_method(), ['login', 'register', 'forgot_password']))
@@ -142,7 +142,6 @@ class Admin extends CI_Controller {
 		}
 	}
 
-
 	public function project($option = 'view', $id = NULL)
 	{
 		if (!empty($id))
@@ -176,9 +175,23 @@ class Admin extends CI_Controller {
 					$this->form_validation->set_rules('name', 'Nama Project', 'trim|required|max_length[40]');
 					$this->form_validation->set_rules('category', 'Kategori Project', 'trim|required|integer');
 					$this->form_validation->set_rules('budget', 'Project Budget', 'trim|required|numeric');
+
 					if ($this->form_validation->run() == TRUE)
 					{
+						$deadline = NULL;
 
+						if (!empty($this->input->post('deadline')))
+						{
+							$deadline = explode('-', $this->input->post('deadline'));
+						}
+
+						// $this->project->create(array(
+						// 	'name' => $this->input->post('name'),
+						// 	'category' => $this->input->post('category'),
+						// 	'area' => $this->input->post('area'),
+						// 	'budget' => $this->input->post('budget'),
+						// 	'deadline' => $deadline
+						// ));
 					}
 					else
 					{
@@ -194,57 +207,6 @@ class Admin extends CI_Controller {
 			{
 
 			}
-		}
-	}
-
-	public function chat()
-	{
-		$this->template->load('chat');
-	}
-
-	public function product_material($id = NULL, $option = 'view')
-	{
-		if (!empty($id))
-		{
-
-		}
-		else
-		{
-
-		}
-	}
-
-	public function product_size($option = 'view', $id = NULL)
-	{
-		switch ($option)
-		{
-			case 'add':
-				if ($this->input->method() == 'post')
-				{
-
-				}
-				else
-				{
-					$this->template->load('product/size/add');
-				}
-			break;
-
-			case 'edit':
-			break;
-
-			case 'delete':
-			break;
-
-			default:
-				if (!empty($id))
-				{
-
-				}
-				else
-				{
-					$this->template->load('project/home');
-				}
-			break;
 		}
 	}
 
