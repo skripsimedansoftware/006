@@ -7,7 +7,7 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('template', ['module' => strtolower($this->router->fetch_class())]);
-		$this->load->model(['user', 'project', 'project_category']);
+		$this->load->model(['user', 'project', 'project_category', 'criteria']);
 		if (empty($this->session->userdata($this->router->fetch_class())))
 		{
 			if (!in_array($this->router->fetch_method(), ['login', 'register', 'forgot_password']))
